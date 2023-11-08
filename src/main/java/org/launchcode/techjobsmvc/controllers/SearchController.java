@@ -37,11 +37,14 @@ public class SearchController {
             jobs = JobData.findByColumnAndValue(searchType, searchTerm);
         }
 
-        model.addAttribute("title", "Search Results");
+        model.addAttribute("title", "Jobs With " + capitalizeFirstLetter(searchType) + ": " + searchTerm);
         model.addAttribute("jobs", jobs);
         model.addAttribute("columns", columnChoices);
 
         return "search";
+    }
+    private String capitalizeFirstLetter(String text) {
+        return text.substring(0, 1).toUpperCase() + text.substring(1);
     }
 }
 
